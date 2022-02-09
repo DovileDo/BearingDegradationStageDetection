@@ -41,9 +41,16 @@ training/validation/testing can be created using the stability_plot.py file.
 
 ## Part 2 - Bearing degradation stage classification
 
+### Built with
+
+* Pandas 
+* NumPy 
+* SciPy
+* Scikit-learn 
+* Keras
+
 ### Prerequisites
 
 The packages needed to run the project are listed in the requirements.txt file.
 
-The databases used in the project need to be downloaded and stored in the home directory of the project. Download links
-can be found on the reference website of the dataset.
+The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
