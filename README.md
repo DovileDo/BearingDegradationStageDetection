@@ -2,15 +2,16 @@
 
 # Method
 
-This bearing degradation stage detection method consists of two parts as shown in the : 
+This bearing degradation stage detection method consists of two parts as shown in the chart below: 
 
-* Domain knowledge based bearing vibration data labeling
-* Defining ways to measure the similarity of datasets, such that the similarity reflects the transferability
+* Domain knowledge based bearing vibration data labeling (Labeling step)
+* Classifier trained with this labeled bearing vibration data for bearing degradation stage prediction (Unified classifier)
 
 <img src="reports/figures/model.png" alt="method overview">
 
 ## Part 1 - Data labeling
 
+<!---
 ### Project Structure
 The project is structured as shown in the flowchart. 
 
@@ -38,6 +39,7 @@ for this the trained models need to be in the home directory.
 Extra: 
 Feature maps of the models can be created using the featuremaps_viz.py file, plots showing the stability during 
 training/validation/testing can be created using the stability_plot.py file. 
+-->
 
 ## Part 2 - Bearing degradation stage classification
 
