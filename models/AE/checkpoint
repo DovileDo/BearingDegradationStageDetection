@@ -1,0 +1,2 @@
+model_checkpoint_path: "AEclassifier"
+all_model_checkpoint_paths: "AEclassifier"
