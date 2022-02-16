@@ -18,5 +18,5 @@ for subdir, dirs, files in os.walk(rootdir):
 		df = pd.read_csv(rootdir+ '/' +file)
 		features = ToTime(df)
 		X = np.append(X, features.values, axis=0)
-		print(X.shape)
+        
 pd.DataFrame(X).to_csv("../../data/Xtrain_time.csv", index=False)

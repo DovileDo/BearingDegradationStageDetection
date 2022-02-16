@@ -27,4 +27,4 @@ if __name__ == '__main__':
             labels = get_AElabels(X_truncated, X)
             Y.extend(labels.tolist())
 
-    pd.DataFrame(Y).to_csv(Path('../../data/labels/train_AElabels.csv'), index=False)
+    pd.DataFrame(Y).to_csv('../../data/labels/train_AElabels.csv', index=False)

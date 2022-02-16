@@ -29,6 +29,7 @@ decoded = keras.layers.Dense(641, activation='linear')(decoded)
 autoencoder = keras.Model(input_freq, decoded)
 # This model maps an input to its encoded representation
 encoder = keras.Model(input_freq, encoded)
+weights = autoencoder.get_weights()
 autoencoder.compile(optimizer='adam', loss='mae')
 
 def anomaly_score(X_true, X_pred):
@@ -61,7 +62,7 @@ def correct_labels(Hl, Al):
     return labelsb
 
 def get_AElabels(Xt, Xf):
-    autoencoder.compile(optimizer='adam', loss='mae')
+    autoencoder.set_weights(weights)
     autoencoder.fit(Xt[:,:641], Xt[:,:641], epochs=100, batch_size=64, shuffle=True, verbose=False)
     
     #Horizontal vibration encoding
@@ -71,7 +72,7 @@ def get_AElabels(Xt, Xf):
     score = anomaly_score(Xf[:,:641], Hdecoded_f)
     anomaly_threshold = calc_anomaly_treshold(anomaly_score(Xt[:,:641], autoencoder.predict(Xt[:,:641])))
     
-    autoencoder.compile(optimizer='adam', loss='mae')
+    autoencoder.set_weights(weights)
     autoencoder.fit(Xt[:,641:], Xt[:,641:], epochs=100, batch_size=64, shuffle=True, verbose=False)
     
     #Vertical vibration encoding

@@ -111,12 +111,10 @@ for subdir, dirs, files in os.walk(rootdir):
         #test accuracy
         X_truncated = X_freq[:int(len(X_freq)*0.8),:]
         AElabels = get_AElabels(X_truncated, X_freq)
-        print(AElabels.shape)
         AE_acc = accuracy(keras.utils.to_categorical(AElabels, num_classes=4), AEpred)
         AE_testacc.append(AE_acc)
         
         PCAlabels = get_PCAlabels(X_freq)
-        print(PCAlabels.shape)
         PCA_acc = accuracy(keras.utils.to_categorical(PCAlabels, num_classes=4), PCApred)
         PCA_testacc.append(PCA_acc)
         
@@ -126,18 +124,13 @@ for subdir, dirs, files in os.walk(rootdir):
 
         
         #Fault point and back to predicting lower stage (healthy or stage 1 after fault)
-        AE_failPoint.append(fault(AEpred)[0])
-        print(AE_failPoint)        
-        PCA_failPoint.append(fault(PCApred)[0])
-        print(PCA_failPoint) 
+        AE_failPoint.append(fault(AEpred)[0])       
+        PCA_failPoint.append(fault(PCApred)[0]) 
         AE_HealthyAfterFail.append(fault(AEpred)[1])
-        print(AE_HealthyAfterFail)
         PCA_HealthyAfterFail.append(fault(PCApred)[1])
-        print(PCA_HealthyAfterFail)
         AE_len.append(fault(AEpred)[2])
-        print(AE_len)
     
-
+    
     AE_testacc = np.array(AE_testacc).reshape(11, 4)
     PCA_testacc = np.array(PCA_testacc).reshape(11, 4)       
     bplabels = ['Healthy', 'Stage 1', 'Stage 2', 'Stage 3']
