@@ -1,5 +1,12 @@
 # A Framework for Predicting the Degradation Stages of Rolling-Element Bearings
 
+As bearings degrade they go through physical changes that manifest in different frequency signatures in the frequency domain. Typically bearing degradation process is devided into five stages: 
+* Healthy bearing, prominent fundamental frequencies;
+* Degradation Stage 0, increase in ultrasonic frequencies (in this project considered to be healthy due to too high sampling frequency requirement);
+* Degradation Stage 1, increase in natural frequencies;
+* Degradation Stage 2, increase fault freqencies.
+* Degradation Stage 4, random noise type vibrations across the whole frequency spectra, especialy in the lower frequency range.
+
 # Method
 
 This bearing degradation stage detection method consists of two parts as shown in the chart below: 
