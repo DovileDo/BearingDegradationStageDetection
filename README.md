@@ -46,8 +46,8 @@ Model training:
 * train_NNclassifier.py to produce trainingacc.npg plot.
 * AElabels_vs_Manual.py to produce labelingacc.png plot which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
 * ClassifierPerformance.py:
-** for bearing degradation stage posterior prediction in reports/figures/posterior
-** as well as testAcc.png 
+    * for bearing degradation stage posterior prediction in reports/figures/posterior
+    * as well as testAcc.png 
 
 ### Built with
 
