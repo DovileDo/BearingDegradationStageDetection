@@ -4,7 +4,7 @@ As bearings degrade they go through physical changes that manifest in different 
 * Healthy bearing, prominent fundamental frequencies;
 * Degradation Stage 0, increase in ultrasonic frequencies (in this project considered to be healthy due to too high sampling frequency requirement);
 * Degradation Stage 1, increase in natural frequencies;
-* Degradation Stage 2, increase fault freqencies.
+* Degradation Stage 2, increase in fault freqencies.
 * Degradation Stage 4, random noise type vibrations across the whole frequency spectra, especialy in the lower frequency range.
 
 # Method
@@ -17,6 +17,18 @@ This bearing degradation stage detection method consists of two parts as shown i
 <img src="reports/figures/model.png" alt="method overview">
 
 ## Part 1 - Data labeling
+
+The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
+
+Data preprocessing: 
+* MergeDataFiles.py to merge files in the original data set to one file/bearing;
+* TransformToFrequencyDomain.py to extraxt frequency domain features.
+
+Data labeling:
+* AutoEncoder.py and PCAlabeling.py 
+
+
+
 
 <!---
 ### Project Structure
@@ -57,9 +69,3 @@ training/validation/testing can be created using the stability_plot.py file.
 * SciPy
 * Scikit-learn 
 * Keras
-
-### Prerequisites
-
-The packages needed to run the project are listed in the requirements.txt file.
-
-The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
