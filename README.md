@@ -40,16 +40,17 @@ Feature extraction:
 
 Model training:
 * NNclassifier.py classifier architecture.
-* train_NNclassifier.py train and save trained classifier.
+* train_NNclassifier.py train and save trained classifier (a separate classifier supervised by both AElabels and PCAlabels).
 
 ## Experiments
 * train_NNclassifier.py to produce trainingacc.npg plot.
-* AElabels_vs_Manual.py to produce labelingacc.png plot which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
+* AElabels_vs_Manual.py to produce Bearing1_1.png plot which compares single bearing AElabels to manual labels extracted manually examining changes in the frequency and RMS plots.
+* LabelingPerformance.py to produce labelingacc.png which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
 * ClassifierPerformance.py:
     * for bearing degradation stage posterior prediction in reports/figures/posterior
     * testAcc.png which compares classifier predictions to test set AElabels and PCAlabels.
     * overlap.png which shows the percentage of a degradation stage predicted by the classifier overlaped by any other bearing degradation stage.
-    * fault_results.csv 
+    * fault_results.csv which shows how often the classifier predicts healthy bearing or degradation stage 1 after it predicted fault (stage 2 or 3) for the first time as well as bearing lifetime left after a fault was predicted.
 
 ### Built with
 
