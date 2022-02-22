@@ -24,43 +24,30 @@ Data preprocessing:
 * MergeDataFiles.py to merge files in the original data set to one file/bearing;
 * TransformToFrequencyDomain.py to extraxt frequency domain features.
 
-Data labeling:
-* AutoEncoder.py and PCAlabeling.py 
+Data labeling (3 different labeling methods, Autoencoder-based labeling and PCA-based as well as manual labeling for reference):
+* AutoEncoder.py for AutoEncoder-based data labeling.
+* PCAlabeling.py for PCA-based data labeling.
+* Ytrain_AElabels.py to extract AElabels for training data set.
+* Ytrain_PCAlabels.py to extract PCAlabels for training data set.
+* Manual_labeling.py to produce frequency and RMS plots for manual labeling.
 
-
-
-
-<!---
-### Project Structure
-The project is structured as shown in the flowchart. 
-
-* Dataset collection/creation:
-The different datasets are collected (and created) using the data_import.py and 
-ImageNet_subset_creator.py files in the io-folder. Specific paths to the different datasets are to be set in the
-data_paths.py file. The PCam-dataset is first converted to PNG-files and stored in the home directory using the
-pcam_converter.py file. The PNG-images are collected using the data_import.py file. 
-
-* Pretraining:
-In the transfer_experiments.py file the pretraining experiment is created and connected with Sacred. In the models 
-folder the model_preparation_saving.py and tf_generators_models_kfold.py files include functions that create the 
-necessary model, generators, etc. After pretraining the trained model is stored on OSF using the requests_OSF.py file. 
-The experiment results are logged into Neptune using Sacred. 
-
-* Transfer learning and evaluation:
-The pretrained models are used in the transfer learning experiments, created in the transfer_experiments.py file. 
-Similarly to pretraining, models, generators etc. are created using the model_preparation_saving.py and 
-tf_generators_models_kfold.py files. The transfer performance is evaluated using the AUC_evaluation.py file in the
-evaluation folder. The resulting models, weights and predictions are stored on OSF with the 
-requests_OSF.py file. The experiment results are logged into Neptune using Sacred. 
-Figures included in the paper are created using the visualization functions in the AUC_evaluation.py file. Note that 
-for this the trained models need to be in the home directory.
-
-Extra: 
-Feature maps of the models can be created using the featuremaps_viz.py file, plots showing the stability during 
-training/validation/testing can be created using the stability_plot.py file. 
--->
 
 ## Part 2 - Bearing degradation stage classification
+
+Feature extraction:
+* TransformToFrequencyDomain.py and Xtrain_frequency.py to extraxt frequency domain features for classifier training.
+* TransformToTimeDomain.py and Xtrain_time.py to extraxt time domain features for classifier training.
+
+Model training:
+* NNclassifier.py classifier architecture.
+* train_NNclassifier.py train and save trained classifier.
+
+## Experiments
+* train_NNclassifier.py to produce trainingacc.npg plot.
+* AElabels_vs_Manual.py to produce labelingacc.png plot which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
+* ClassifierPerformance.py:
+** for bearing degradation stage posterior prediction in reports/figures/posterior
+** as well as testAcc.png 
 
 ### Built with
 
