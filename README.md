@@ -47,7 +47,9 @@ Model training:
 * AElabels_vs_Manual.py to produce labelingacc.png plot which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
 * ClassifierPerformance.py:
     * for bearing degradation stage posterior prediction in reports/figures/posterior
-    * as well as testAcc.png 
+    * testAcc.png which compares classifier predictions to test set AElabels and PCAlabels.
+    * overlap.png which shows the percentage of a degradation stage predicted by the classifier overlaped by any other bearing degradation stage.
+    * fault_results.csv 
 
 ### Built with
 
