@@ -1,5 +1,14 @@
 # A Framework for Predicting the Degradation Stages of Rolling-Element Bearings
 
+For detailed description of the project please check https://arxiv.org/abs/2203.03259.
+
+As bearings degrade they go through physical changes that manifest in different frequency signatures in the frequency domain. Typically bearing degradation process is devided into five stages: 
+* Healthy bearing, prominent fundamental frequencies;
+* Degradation Stage 0, increase in ultrasonic frequencies (in this project considered to be healthy due to too high sampling frequency requirement);
+* Degradation Stage 1, increase in natural frequencies;
+* Degradation Stage 2, increase in fault freqencies.
+* Degradation Stage 4, random noise type vibrations across the whole frequency spectra, especialy in the lower frequency range.
+
 # Method
 
 This bearing degradation stage detection method consists of two parts as shown in the chart below: 
@@ -11,37 +20,39 @@ This bearing degradation stage detection method consists of two parts as shown i
 
 ## Part 1 - Data labeling
 
-<!---
-### Project Structure
-The project is structured as shown in the flowchart. 
+The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
 
-* Dataset collection/creation:
-The different datasets are collected (and created) using the data_import.py and 
-ImageNet_subset_creator.py files in the io-folder. Specific paths to the different datasets are to be set in the
-data_paths.py file. The PCam-dataset is first converted to PNG-files and stored in the home directory using the
-pcam_converter.py file. The PNG-images are collected using the data_import.py file. 
+Data preprocessing: 
+* MergeDataFiles.py to merge files in the original data set to one file/bearing;
+* TransformToFrequencyDomain.py to extraxt frequency domain features.
 
-* Pretraining:
-In the transfer_experiments.py file the pretraining experiment is created and connected with Sacred. In the models 
-folder the model_preparation_saving.py and tf_generators_models_kfold.py files include functions that create the 
-necessary model, generators, etc. After pretraining the trained model is stored on OSF using the requests_OSF.py file. 
-The experiment results are logged into Neptune using Sacred. 
+Data labeling (3 different labeling methods, Autoencoder-based labeling and PCA-based as well as manual labeling for reference):
+* AutoEncoder.py for AutoEncoder-based data labeling.
+* PCAlabeling.py for PCA-based data labeling.
+* Ytrain_AElabels.py to extract AElabels for training data set.
+* Ytrain_PCAlabels.py to extract PCAlabels for training data set.
+* Manual_labeling.py to produce frequency and RMS plots for manual labeling.
 
-* Transfer learning and evaluation:
-The pretrained models are used in the transfer learning experiments, created in the transfer_experiments.py file. 
-Similarly to pretraining, models, generators etc. are created using the model_preparation_saving.py and 
-tf_generators_models_kfold.py files. The transfer performance is evaluated using the AUC_evaluation.py file in the
-evaluation folder. The resulting models, weights and predictions are stored on OSF with the 
-requests_OSF.py file. The experiment results are logged into Neptune using Sacred. 
-Figures included in the paper are created using the visualization functions in the AUC_evaluation.py file. Note that 
-for this the trained models need to be in the home directory.
-
-Extra: 
-Feature maps of the models can be created using the featuremaps_viz.py file, plots showing the stability during 
-training/validation/testing can be created using the stability_plot.py file. 
--->
 
 ## Part 2 - Bearing degradation stage classification
+
+Feature extraction:
+* TransformToFrequencyDomain.py and Xtrain_frequency.py to extraxt frequency domain features for classifier training.
+* TransformToTimeDomain.py and Xtrain_time.py to extraxt time domain features for classifier training.
+
+Model training:
+* NNclassifier.py classifier architecture.
+* train_NNclassifier.py train and save trained classifier (a separate classifier supervised by both AElabels and PCAlabels).
+
+## Experiments
+* train_NNclassifier.py to produce trainingacc.npg plot.
+* AElabels_vs_Manual.py to produce Bearing1_1.png plot which compares single bearing AElabels to manual labels extracted manually examining changes in the frequency and RMS plots.
+* LabelingPerformance.py to produce labelingacc.png which compares training dataset AElabels (Ytrain_AElabels.py) and PCAlabels (Ytrain_PCAlabels.py) to manual labels extracted manually examining changes in the frequency and RMS plots in Manual_labeling.py.
+* ClassifierPerformance.py:
+    * for bearing degradation stage posterior prediction in reports/figures/posterior
+    * testAcc.png which compares classifier predictions to test set AElabels and PCAlabels.
+    * overlap.png which shows the percentage of a degradation stage predicted by the classifier overlaped by any other bearing degradation stage.
+    * fault_results.csv which shows how often the classifier predicts healthy bearing or degradation stage 1 after it predicted fault (stage 2 or 3) for the first time as well as bearing lifetime left after a fault was predicted.
 
 ### Built with
 
@@ -50,9 +61,3 @@ training/validation/testing can be created using the stability_plot.py file.
 * SciPy
 * Scikit-learn 
 * Keras
-
-### Prerequisites
-
-The packages needed to run the project are listed in the requirements.txt file.
-
-The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
