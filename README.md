@@ -20,7 +20,7 @@ This bearing degradation stage detection method consists of two parts as shown i
 
 ## Part 1 - Data labeling
 
-The dataset used in the project need to be downloaded from https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/#femto, and stored in the data directory.
+The FEMTO Bearing dataset used in the project can to be downloaded from https://www.nasa.gov/content/prognostics-center-of-excellence-data-set-repository. Data should be stored in the data directory.
 
 Data preprocessing: 
 * MergeDataFiles.py to merge files in the original data set to one file/bearing;
