@@ -1,6 +1,6 @@
 # A Framework for Predicting the Degradation Stages of Rolling-Element Bearings
 
-For detailed description of the project please check https://arxiv.org/abs/2203.03259.
+For detailed description of the project please check https://dl.acm.org/doi/10.1145/3534678.3539057 (or preprint: https://arxiv.org/abs/2203.03259).
 
 As bearings degrade they go through physical changes that manifest in different frequency signatures in the frequency domain. Typically bearing degradation process is devided into five stages: 
 * Healthy bearing, prominent fundamental frequencies;
@@ -61,3 +61,26 @@ Model training:
 * SciPy
 * Scikit-learn 
 * Keras
+
+## Citation
+If you find our method useful in your research, please cite:
+
+```yaml
+@inproceedings{10.1145/3534678.3539057,
+author = {Juodelyte, Dovile and Cheplygina, Veronika and Graversen, Therese and Bonnet, Philippe},
+title = {Predicting Bearings Degradation Stages for Predictive Maintenance in the Pharmaceutical Industry},
+year = {2022},
+isbn = {9781450393850},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3534678.3539057},
+doi = {10.1145/3534678.3539057},
+abstract = {In the pharmaceutical industry, the maintenance of production machines must be audited by the regulator. In this context, the problem of predictive maintenance is not when to maintain a machine, but what parts to maintain at a given point in time. The focus shifts from the entire machine to its component parts and prediction becomes a classification problem. In this paper, we focus on rolling-elements bearings and we propose a framework for predicting their degradation stages automatically. Our main contribution is a k-means bearing lifetime segmentation method based on high-frequency bearing vibration signal embedded in a latent low-dimensional subspace using an AutoEncoder. Given high-frequency vibration data, our framework generates a labeled dataset that is used to train a supervised model for bearing degradation stage detection. Our experimental results, based on the publicly available FEMTO Bearing run-to-failure dataset, show that our framework is scalable and that it provides reliable and actionable predictions for a range of different bearings.},
+booktitle = {Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+pages = {3107–3115},
+numpages = {9},
+keywords = {signal processing, predictive maintenance, dataset labeling, neural networks, data science, bearing degradation},
+location = {Washington DC, USA},
+series = {KDD '22}
+}
+```
